@@ -3,10 +3,13 @@ import { Plus } from "lucide-react";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { getTodosAction } from "@/actions/todo.actions";
 
-export default function Home() {
+export default async function Home() {
+  const  todos = await getTodosAction()
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-24">
+    <main className="container">
+      <pre>{JSON.stringify(todos, null, 2)}</pre>
       {/* Dialog */}
       <Dialog>
         <DialogTrigger asChild>
