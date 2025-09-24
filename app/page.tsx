@@ -1,17 +1,46 @@
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+// import { Button } from "@/components/ui/button";
+// import { Plus } from "lucide-react";
+// import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+// import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
 import { getTodosAction } from "@/actions/todo.actions";
 
 export default async function Home() {
   const  todos = await getTodosAction()
   return (
     <main className="container">
-      <pre>{JSON.stringify(todos, null, 2)}</pre>
+      
+
+
+      {
+        todos.map((todo) => (
+          <p key={todo.id}>{todo.title}</p>
+        ))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {/* Dialog */}
-      <Dialog>
+      {/* <Dialog>
         <DialogTrigger asChild>
           <Button className="bg-blue-500 text-white hover:bg-blue-600">
             <Plus className="mr-2 h-4 w-4" />
@@ -44,7 +73,7 @@ export default async function Home() {
             </DialogFooter>
           </form>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </main>
   );
 }
