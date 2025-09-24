@@ -10,6 +10,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { TodoFormValues, todoSchema } from "@/schema";
+import { createTodosAction } from "@/actions/todo.actions";
 
 function AddTodoForm() {
   const form = useForm<TodoFormValues>({
@@ -19,9 +20,11 @@ function AddTodoForm() {
       body: "",
     },
   });
-  
+
 // Submit function
   function onSubmit(values: TodoFormValues) {
+    createTodosAction(values);
+    form.reset()
     console.log(values);
   }
 

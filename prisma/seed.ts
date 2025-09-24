@@ -6,8 +6,8 @@ async function main() {
 // add todos to db from faker
   await prisma.todo.createMany({
     data: Array.from({ length: 30 }, () => ({
-      title: faker.lorem.text(),
-      body: faker.lorem.paragraph(),
+      title: faker.lorem.words({min: 3, max: 10}),
+      body: faker.lorem.words({min: 3, max: 10}),
     })),
   });
 

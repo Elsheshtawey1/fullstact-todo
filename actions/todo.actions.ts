@@ -8,6 +8,13 @@ export const getTodosAction = async () => {
   // error handling
   
 };
-export const createTodosAction = async () => {};
+export const createTodosAction = async ({ title, body }: { title: string, body?: string | undefined }) => {
+  await prisma.todo.create({
+    data: {
+      title,
+      body,
+    },
+  })
+};
 export const updateTodosAction = async () => {};
 export const deleteTodosAction = async () => {};
