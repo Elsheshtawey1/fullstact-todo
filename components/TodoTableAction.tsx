@@ -1,22 +1,22 @@
 "use client";
-import { Pin, Trash } from 'lucide-react';
+import {  Trash } from 'lucide-react';
 import { Button } from './ui/button';
 import { useState } from "react";
 import { deleteTodosAction } from '@/actions/todo.actions';
+import EditTodoForm from './EditTodoForm';
+import { Todo } from '@/interface';
 
-export const TodoTableAction = ({id}:{id:string}) => {
+export const TodoTableAction = ({todo}:{todo:Todo}) => {
   const [loading, setLoading] = useState(false);
   return (
     <>
-      <Button size={"icon"}>
-        <Pin size={16} />
-      </Button>
+      <EditTodoForm todo={todo} />
       <Button
         size={"icon"}
         variant={"destructive"}
         onClick={async () => {
           setLoading(true);
-          await deleteTodosAction(id);
+          await deleteTodosAction(todo?.id as string);
           setLoading(false);
         }}
       >
