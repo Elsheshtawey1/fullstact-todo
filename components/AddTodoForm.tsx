@@ -13,8 +13,11 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 
 import { TodoFormValues, todoSchema } from "@/schema";
 import { createTodosAction } from "@/actions/todo.actions";
+import { useState } from "react";
 
 export default function AddTodoForm() {
+  const [open, setOpen] = useState(false);
+
   const form = useForm<TodoFormValues>({
     resolver: zodResolver(todoSchema),
     defaultValues: {
@@ -27,11 +30,12 @@ export default function AddTodoForm() {
   function onSubmit(values: TodoFormValues) {
     createTodosAction(values);
     form.reset();
+    setOpen(false);
     console.log(values);
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="bg-blue-500 text-white hover:bg-blue-600">
           <Plus className="mr-2 h-4 w-4" />
