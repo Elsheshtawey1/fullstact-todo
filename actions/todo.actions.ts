@@ -6,15 +6,15 @@ const prisma = new PrismaClient();
 export const getTodosAction = async () => {
   return await prisma.todo.findMany();
   // error handling
-  
 };
-export const createTodosAction = async ({ title, body }: { title: string, body?: string | undefined }) => {
+export const createTodosAction = async ({ title, body, completed }: { title: string; body?: string | undefined; completed: boolean }) => {
   await prisma.todo.create({
     data: {
       title,
       body,
+      completed,
     },
-  })
+  });
 };
 export const updateTodosAction = async () => {};
 export const deleteTodosAction = async () => {};

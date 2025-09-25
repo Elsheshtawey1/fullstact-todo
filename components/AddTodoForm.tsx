@@ -3,28 +3,30 @@
 import { Plus } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { TodoFormValues, todoSchema } from "@/schema";
 import { createTodosAction } from "@/actions/todo.actions";
 
-function AddTodoForm() {
+export default function AddTodoForm() {
   const form = useForm<TodoFormValues>({
     resolver: zodResolver(todoSchema),
     defaultValues: {
       title: "",
       body: "",
+      completed: false,
     },
   });
 
-// Submit function
   function onSubmit(values: TodoFormValues) {
     createTodosAction(values);
-    form.reset()
+    form.reset();
     console.log(values);
   }
 
@@ -72,7 +74,21 @@ function AddTodoForm() {
                     <Textarea placeholder="Add new todo description" {...field} />
                   </FormControl>
                   <FormDescription>This will be your todo description.</FormDescription>
-                  
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Completed Checkbox */}
+            <FormField
+              control={form.control}
+              name="completed"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} ref={field.ref} />
+                  </FormControl>
+                  <FormLabel className="!mt-0">Completed</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
@@ -91,5 +107,3 @@ function AddTodoForm() {
     </Dialog>
   );
 }
-
-export default AddTodoForm;
