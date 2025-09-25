@@ -1,19 +1,19 @@
 "use client";
 
-import { Plus } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Plus } from "lucide-react";
 
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 
 import { TodoFormValues, todoSchema } from "@/schema";
 import { createTodosAction } from "@/actions/todo.actions";
-import { useState } from "react";
 
 export default function AddTodoForm() {
   const [open, setOpen] = useState(false);
@@ -27,6 +27,7 @@ export default function AddTodoForm() {
     },
   });
 
+  // Handle Submit
   function onSubmit(values: TodoFormValues) {
     createTodosAction(values);
     form.reset();
@@ -36,21 +37,23 @@ export default function AddTodoForm() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
+      {/* Trigger Button */}
       <DialogTrigger asChild>
-        <Button className="bg-blue-500 text-white hover:bg-blue-600">
-          <Plus className="mr-2 h-4 w-4" />
+        <Button variant="default" className="gap-2">
+          <Plus className="h-4 w-4" />
           Add Todo
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[425px]">
+      {/* Dialog Content */}
+      <DialogContent className="sm:max-w-[480px]">
         <DialogHeader>
-          <DialogTitle>New Todo</DialogTitle>
-          <DialogDescription>Add a new task to your todo list.</DialogDescription>
+          <DialogTitle className="text-lg font-semibold">New Todo</DialogTitle>
+          <DialogDescription>Add a new task to your todo list. Fill the details below.</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6 py-2">
             {/* Title Input */}
             <FormField
               control={form.control}
@@ -59,7 +62,7 @@ export default function AddTodoForm() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Add new todo title" {...field} />
+                    <Input placeholder="Todo title..." {...field} />
                   </FormControl>
                   <FormDescription>This will be your todo title.</FormDescription>
                   <FormMessage />
@@ -75,9 +78,9 @@ export default function AddTodoForm() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Add new todo description" {...field} />
+                    <Textarea placeholder="Todo description..." {...field} />
                   </FormControl>
-                  <FormDescription>This will be your todo description.</FormDescription>
+                  <FormDescription>Add more details about your task.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -88,22 +91,22 @@ export default function AddTodoForm() {
               control={form.control}
               name="completed"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                <FormItem className="flex flex-row items-center space-x-3">
                   <FormControl>
                     <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} ref={field.ref} />
                   </FormControl>
-                  <FormLabel className="!mt-0">Completed</FormLabel>
+                  <FormLabel className="!mt-0">Mark as Completed</FormLabel>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
             {/* Footer Actions */}
-            <DialogFooter className="mt-4">
+            <DialogFooter className="flex justify-end gap-2">
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
-              <Button type="submit">Save Changes</Button>
+              <Button type="submit">Save Todo</Button>
             </DialogFooter>
           </form>
         </Form>
