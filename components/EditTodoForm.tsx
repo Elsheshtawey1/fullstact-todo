@@ -59,65 +59,66 @@ useEffect(() => {
           <DialogTitle>Update Todo</DialogTitle>
           <DialogDescription>Update the details of your task..</DialogDescription>
         </DialogHeader>
+        <div className="py-4">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
+              {/* Title Input */}
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Title</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Add new todo title" {...field} />
+                    </FormControl>
+                    <FormDescription>This will be your todo title.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-            {/* Title Input */}
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Add new todo title" {...field} />
-                  </FormControl>
-                  <FormDescription>This will be your todo title.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              {/* Description Input */}
+              <FormField
+                control={form.control}
+                name="body"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Textarea placeholder="Add new todo description" {...field} />
+                    </FormControl>
+                    <FormDescription>This will be your todo description.</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            {/* Description Input */}
-            <FormField
-              control={form.control}
-              name="body"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="Add new todo description" {...field} />
-                  </FormControl>
-                  <FormDescription>This will be your todo description.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              {/* Completed Checkbox */}
+              <FormField
+                control={form.control}
+                name="completed"
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(!!checked)} ref={field.ref} />
+                    </FormControl>
+                    <FormLabel className="!mt-0">Completed</FormLabel>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            {/* Completed Checkbox */}
-            <FormField
-              control={form.control}
-              name="completed"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-center space-x-3 space-y-0">
-                  <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={(checked) => field.onChange(!!checked)} ref={field.ref} />
-                  </FormControl>
-                  <FormLabel className="!mt-0">Completed</FormLabel>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Footer Actions */}
-            <DialogFooter className="mt-4">
-              <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
-              </DialogClose>
-              <Button type="submit">Save Changes</Button>
-            </DialogFooter>
-          </form>
-        </Form>
+              {/* Footer Actions */}
+              <DialogFooter className="mt-4">
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+                <Button type="submit">Save Changes</Button>
+              </DialogFooter>
+            </form>
+          </Form>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -3,14 +3,20 @@
 import { getTodosAction } from "@/actions/todo.actions";
 import AddTodoForm from "@/components/AddTodoForm";
 import TodoTable from "@/components/TodoTable";
-export default async function Home() {
-  const todo =await getTodosAction();
-  console.log(todo);
-  return (
-    <main className="container py-10">
-      <AddTodoForm />
+import { auth } from "@clerk/nextjs/server";
 
-      <TodoTable todos={todo} />
+export default async function Home() {
+  const { userId } = await auth();
+
+  const todos = await getTodosAction();
+  console.log(todos);
+
+  return (
+    <main className="container">
+      <div className="mx-auto flex w-full lg:w-3/4 flex-col justify-center space-y-4 mt-10">
+        <AddTodoForm userId={userId} />
+        <TodoTable todos={todos} />
+      </div>
     </main>
   );
 }
