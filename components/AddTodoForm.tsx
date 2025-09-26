@@ -37,9 +37,9 @@ export default function AddTodoForm({ userId }: { userId?: string | null }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {/* Trigger Button */}
-      <DialogTrigger asChild>
-        <Button variant="default" className="w-auto px-4 gap-2">
-          <Plus className="h-4 w-4" />
+      <DialogTrigger asChild className="ml-auto "> 
+        <Button variant="default" >
+          <Plus size={14} className="mr-1"/>
           Add Todo
         </Button>
       </DialogTrigger>
@@ -52,7 +52,7 @@ export default function AddTodoForm({ userId }: { userId?: string | null }) {
         </DialogHeader>
         <div className="py-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6 py-2">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-6 py-2 space-y-8">
               {/* Title Input */}
               <FormField
                 control={form.control}
