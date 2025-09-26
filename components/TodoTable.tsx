@@ -10,7 +10,6 @@ export default function TodosTable({ todos }: { todos: Todo[] }) {
       <div className="w-full">
         {/* --- Mobile View: stacked cards --- */}
         <TodosTableMobile todos={todos} />
-
         {/* --- Desktop / Tablet View: classic table --- */}
         <div className="hidden sm:block overflow-x-auto rounded-xl border shadow-md p-3">
           <Table className="w-full min-w-[600px]">
