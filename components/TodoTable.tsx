@@ -35,11 +35,11 @@ export default function TodosTable({ todos }: { todos: Todo[] }) {
             <TableBody>
               {filteredTodos.length ? (
                 filteredTodos.map((todo) => (
-                  <TableRow key={todo.id}>
-                    <TableCell className="font-medium">{todo.id}</TableCell>
-                    <TableCell>{todo.title}</TableCell>
+                  <TableRow key={todo?.id}>
+                    <TableCell className="font-medium">{todo?.id}</TableCell>
+                    <TableCell>{todo?.title}</TableCell>
                     <TableCell className="text-center">
-                      <Badge variant={todo.completed ? "default" : "destructive"}>{todo.completed ? "Completed" : "Uncompleted"}</Badge>
+                      <Badge variant={todo.completed ? "default" : "destructive"}>{todo?.completed ? "Completed" : "Uncompleted"}</Badge>
                     </TableCell>
                     <TableCell className="flex justify-end space-x-2">
                       <TodoTableAction todo={todo} />
