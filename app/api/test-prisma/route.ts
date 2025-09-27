@@ -6,8 +6,10 @@ export async function GET() {
   try {
     const todos = await prisma.todo.findMany();
     return new Response(JSON.stringify(todos), { status: 200 });
-  } catch (err) {
+  } catch (err: unknown) {
     console.error("Prisma Error:", err);
-    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+    const message = err instanceof Error ? err.message : String(err);
+    return new Response(JSON.stringify({ error: message }), { status: 500 });
   }
+
 }
