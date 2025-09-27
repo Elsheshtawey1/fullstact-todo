@@ -31,6 +31,7 @@ export default function AddTodoForm({ userId }: { userId?: string | null }) {
   function onSubmit({ title, body, completed, }: TodoFormValues) {
     createTodosAction({ title, body, completed, userId: userId as string });
     form.reset();
+    
     setOpen(false);
   }
 
