@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Full-Stack To-Do Application
 
-## Getting Started
+A full-stack to-do list application built with Next.js, Prisma, and MongoDB. This project provides a robust foundation for managing tasks with complete CRUD functionality, user authentication, and a modern, responsive user interface.
 
-First, run the development server:
+## Table of Contents
+
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation Instructions](#installation-instructions)
+- [Usage Guidelines](#usage-guidelines)
+- [Contribution Guidelines](#contribution-guidelines)
+- [License Information](#license-information)
+
+## Features
+
+- **Full CRUD Operations:** Create, Read, Update, and Delete to-do items.
+- **User Authentication:** Secure user sign-up and sign-in functionality provided by Clerk.
+- **Server Actions:** API-less architecture using Next.js Server Actions for data mutations.
+- **Responsive UI:** A modern and responsive user interface built with Tailwind CSS and shadcn/ui.
+- **Theming:** Light and dark mode support.
+- **Database Seeding:** Includes a script to seed the database with mock data for development.
+
+## Technology Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (v15)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Database:** [MongoDB](https://www.mongodb.com/)
+- **Authentication:** [Clerk](https://clerk.com/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/)
+- **Form Management:** [React Hook Form](https://react-hook-form.com/)
+- **Schema Validation:** [Zod](https://zod.dev/)
+- **Linting:** [ESLint](https://eslint.org/)
+
+## Installation Instructions
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone <https://github.com/Elsheshtawey1/fullstact-todo.git>
+    cd fullstack-todo
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+4.  **Initialize the database:**
+
+    Run the following commands to generate the Prisma client, push the database schema, and seed the database with initial data:
+
+    ```bash
+    npx prisma generate
+    npx prisma db push
+    ```
+
+## Usage Guidelines
+
+To start the development server, run the following command:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`: Starts the development server.
+- `npm run build`: Builds the application for production.
+- `npm run start`: Starts a production server.
+- `npm run lint`: Lints the codebase.
+- `npm run seed`: Seeds the database with initial data.
 
-## Learn More
+## Contribution Guidelines
 
-To learn more about Next.js, take a look at the following resources:
+We welcome contributions to improve this project. Please follow these guidelines:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Fork the repository.**
+2.  **Create a new branch:** `git checkout -b feature/your-feature-name`
+3.  **Make your changes** and commit them with a descriptive message.
+4.  **Push to the branch:** `git push origin feature/your-feature-name`
+5.  **Create a pull request** with a clear title and description of your changes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## contact
+* Maintainer: Mohamed Elsheshtawey
+* demo-vercel: [https://fullstact-todo.vercel.app/]
+* LINKEDIN: [https://www.linkedin.com/in/mohamed-elsheshtawey/]
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
